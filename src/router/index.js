@@ -12,9 +12,28 @@ const router =  new Router({
   routes: paths
 });
 // router gards
+// router.beforeEach((to, from, next) => {
+//   NProgress.start();
+//   next();
+// });
+
 router.beforeEach((to, from, next) => {
-  NProgress.start();
-  next();
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('userToken')) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath,
+        },
+      });
+    } else {
+      NProgress.start();
+      next();
+    }
+  } else {
+    NProgress.start();
+    next();
+  }
 });
 
 router.afterEach((to, from) => {

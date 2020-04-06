@@ -63,7 +63,7 @@ const StackData = StackMainData.map((item, key) => {
     'max': 500,
     'sales': item,
   };
-});   
+});
 const SinData = range(1, 12).map(i => {
   return {
     'cate': 'Cat' + i,

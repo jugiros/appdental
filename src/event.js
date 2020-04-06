@@ -1,3 +1,5 @@
+import * as firebase from 'firebase';
+
 export default [
   {
     name: 'APP_LOGIN_SUCCESS',
@@ -11,8 +13,10 @@ export default [
       this.snackbar = {
         show: true,
         color: 'green',
-        text: 'Logout successfully.'
+        text: 'Salida Satisfactoria.'
       };
+      firebase.auth().signOut();
+      localStorage.removeItem('userToken');
       this.$router.replace({ path: '/login' });
     }
   },

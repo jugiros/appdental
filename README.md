@@ -1,7 +1,7 @@
 # Vue Material Admin
 
 ### Introduction
-Vue Material Admin Template is a [Vue](https://vuejs.org/index.html/) Based Material Design Admin Template.
+DENTAL PRIME is a [Vue](https://vuejs.org/index.html/) Based Material Design Admin Template.
 And use [Vuetifyjs](https://vuetifyjs.com/) as base framework.
 Vuetify is Awesome.
 

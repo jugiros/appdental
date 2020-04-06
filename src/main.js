@@ -7,11 +7,21 @@ import router from './router';
 import 'font-awesome/css/font-awesome.css';  
 import './theme/default.styl';
 import VeeValidate from 'vee-validate';
-import colors from 'vuetify/es5/util/colors';
 import Truncate from 'lodash.truncate';
 import { store } from './store';
 import firebase from 'firebase';
 import { config } from './firebaseConfig';
+import axios from 'axios';
+import { axiosRequestConfig } from './configs';
+import ws from './WebServices';
+
+import jQuery from 'jQuery';
+
+window.jQuery = jQuery;
+
+Vue.prototype.$axios = axios.create(axiosRequestConfig);
+Vue.prototype.$ws = ws;
+
 Vue.config.productionTip = false;
 // Helpers
 // Global filters
@@ -39,6 +49,18 @@ Vue.use(Vuetify, {
 });
 // Bootstrap application components
 
+axios.interceptors.request.use(function (config) {
+  // assume your access token is stored in local storage
+  // (it should really be somewhere more secure but I digress for simplicity)
+  let token = localStorage.getItem('access_token')
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${userToken}`
+  }
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
 
 
 /* eslint-disable no-new */

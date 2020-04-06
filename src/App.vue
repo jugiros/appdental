@@ -44,7 +44,7 @@
     </template>
     <v-snackbar
       :timeout="3000"
-      bottom
+      top
       right
       :color="snackbar.color"
       v-model="snackbar.show"

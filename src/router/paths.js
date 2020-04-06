@@ -4,6 +4,7 @@ export default [
     path: '*',
     meta: {
       public: true,
+      requiresAuth: false
     },
     redirect: {
       path: '/404'
@@ -13,6 +14,7 @@ export default [
     path: '/404',
     meta: {
       public: true,
+      requiresAuth: false
     },
     name: 'NotFound',
     component: () => import(
@@ -25,6 +27,7 @@ export default [
     path: '/403',
     meta: {
       public: true,
+      requiresAuth: false
     },
     name: 'AccessDenied',
     component: () => import(
@@ -37,6 +40,7 @@ export default [
     path: '/500',
     meta: {
       public: true,
+      requiresAuth: false
     },
     name: 'ServerError',
     component: () => import(
@@ -49,6 +53,7 @@ export default [
     path: '/login',
     meta: {
       public: true,
+      requiresAuth: false
     },
     name: 'Login',
     component: () => import(
@@ -59,7 +64,7 @@ export default [
   },
   {
     path: '/',
-    meta: { },
+    meta: { requiresAuth: true },
     name: 'Root',
     redirect: {
       name: 'Dashboard'
@@ -67,7 +72,7 @@ export default [
   },
   {
     path: '/dashboard',
-    meta: { breadcrumb: true },
+    meta: { breadcrumb: true, requiresAuth: true },
     name: 'Dashboard',
     component: () => import(
       /* webpackChunkName: "routes" */
@@ -75,7 +80,26 @@ export default [
       `@/pages/Dashboard.vue`
     )
   },
-
+  {
+    path: '/citas',
+    meta: { breadcrumb: true, requiresAuth: true },
+    name: 'Citas',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      `@/pages/Citas.vue`
+      )
+  },
+  {
+    path: '/pacientes',
+    meta: { breadcrumb: true, requiresAuth: true },
+    name: 'Pacientes',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      `@/pages/Pacientes.vue`
+      )
+  },
   // {
   //   path: '/calendar',
   //   meta: { breadcrumb: true },
